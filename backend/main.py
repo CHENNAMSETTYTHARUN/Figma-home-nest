@@ -54,6 +54,9 @@ def serve_html(filename: str):
     file_path = BASE_DIR / filename
     if file_path.exists():
         return FileResponse(str(file_path))
+    err_404 = BASE_DIR / "404.html"
+    if err_404.exists():
+        return FileResponse(str(err_404), status_code=404)
     return {"error": f"Page '{filename}' not found"}
 
 @app.get("/", tags=["Pages"])

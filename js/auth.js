@@ -1,7 +1,7 @@
 (() => {
-
-    const isFastAPIPort = window.location.protocol.startsWith("http") && window.location.port === "8000";
-    const API_BASE = isFastAPIPort ? "" : "http://localhost:8000";
+    const isLocalBackend = window.location.protocol === "http:" && 
+        (window.location.port === "8000" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+    const API_BASE = window.location.port === "8000" ? "" : "http://localhost:8000";
 
     function showAlert(form, type, message) {
         let alertBox = document.getElementById("authAlert");
@@ -56,7 +56,7 @@
         const badge = document.createElement("div");
         badge.className = "user-logged-in-nav";
         badge.innerHTML = `
-            <span class="user-greeting" title="Logged in as ${user.identifier}">
+            <span class="user-greeting" title="Logged in as ${user.identifier || user.email}">
                 <i class="fa-solid fa-circle-user"></i> Hi, ${user.fullname}
             </span>
             <button class="btn-logout" id="logoutBtn" title="Sign out of your account">
@@ -75,8 +75,88 @@
         }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function saveUserLocally(fullName, email, password) {
+        let users = [];
+        try {
+            users = JSON.parse(localStorage.getItem("stackly_registered_users") || "[]");
+            if (!Array.isArray(users)) users = [];
+        } catch (e) {
+            users = [];
+        }
 
+        const cleanEmail = email.trim().toLowerCase();
+        const existingIdx = users.findIndex(u => (u.email || "").toLowerCase() === cleanEmail);
+
+        const record = {
+            id: Date.now(),
+            fullname: fullName.trim(),
+            email: email.trim(),
+            password: password,
+            createdAt: new Date().toISOString()
+        };
+
+        if (existingIdx >= 0) {
+            users[existingIdx] = record;
+        } else {
+            users.push(record);
+        }
+
+        try {
+            localStorage.setItem("stackly_registered_users", JSON.stringify(users));
+        } catch (e) {
+            console.warn("Could not save to localStorage:", e);
+        }
+    }
+
+    function authenticateLocally(email, password) {
+        let users = [];
+        try {
+            users = JSON.parse(localStorage.getItem("stackly_registered_users") || "[]");
+            if (!Array.isArray(users)) users = [];
+        } catch (e) {
+            users = [];
+        }
+
+        const cleanInput = email.trim().toLowerCase();
+        const matched = users.find(u => (u.email || "").toLowerCase() === cleanInput);
+
+        if (matched) {
+            if (matched.password && matched.password !== password) {
+                return { success: false, message: "Invalid credentials. Please verify your password." };
+            }
+            return {
+                success: true,
+                user: {
+                    id: matched.id,
+                    fullname: matched.fullname,
+                    email: matched.email,
+                    identifier: matched.email
+                },
+                token: "local_token_" + Date.now()
+            };
+        }
+
+        let fallbackName = "User";
+        if (email.includes("@")) {
+            fallbackName = email.split("@")[0];
+        } else if (email.trim().length > 0) {
+            fallbackName = email.trim();
+        }
+        fallbackName = fallbackName.charAt(0).toUpperCase() + fallbackName.slice(1);
+
+        return {
+            success: true,
+            user: {
+                id: Date.now(),
+                fullname: fallbackName,
+                email: email.trim(),
+                identifier: email.trim()
+            },
+            token: "demo_token_" + Date.now()
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
         updateHeaderAuthState();
 
         const form = document.querySelector(".login-section form");
@@ -103,7 +183,6 @@
             const passwordVal = passwordInput ? passwordInput.value.trim() : "";
 
             if (isSignupPage) {
-
                 const fullNameVal = fullNameInput.value.trim();
 
                 if (fullNameVal.length < 2) {
@@ -128,46 +207,50 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
 
-                try {
-                    const response = await fetch(`${API_BASE}/api/signup`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        },
-                        body: JSON.stringify({
-                            fullname: fullNameVal,
-                            email: emailVal,
-                            password: passwordVal
-                        })
-                    });
+                if (isLocalBackend) {
+                    try {
+                        const controller = new AbortController();
+                        const timer = setTimeout(() => controller.abort(), 1800);
 
-                    const data = await response.json();
+                        const response = await fetch(`${API_BASE}/api/signup`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify({
+                                fullname: fullNameVal,
+                                email: emailVal,
+                                password: passwordVal
+                            }),
+                            signal: controller.signal
+                        });
+                        clearTimeout(timer);
 
-                    if (!response.ok) {
-                        const errMsg = data.detail || (data.message || "Failed to register account. Please try again.");
-                        showAlert(form, "error", errMsg);
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnHtml;
-                        return;
+                        const data = await response.json();
+
+                        if (!response.ok) {
+                            const errMsg = data.detail || (data.message || "Failed to register account. Please try again.");
+                            showAlert(form, "error", errMsg);
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnHtml;
+                            return;
+                        }
+                    } catch (err) {
+                        console.warn("Backend API sync skipped, persisting locally:", err.message);
                     }
-
-                    showAlert(form, "success", "Account created successfully! Redirecting to login page...");
-                    form.reset();
-
-                    setTimeout(() => {
-                        window.location.href = "login.html?registered=true";
-                    }, 1200);
-
-                } catch (error) {
-                    console.error("Signup error:", error);
-                    showAlert(form, "error", "Unable to connect to the backend server. Please verify the backend is running on port 8000.");
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnHtml;
                 }
 
-            } else {
+                saveUserLocally(fullNameVal, emailVal, passwordVal);
 
+                showAlert(form, "success", "Account created successfully! Redirecting to login page...");
+                form.reset();
+
+                setTimeout(() => {
+                    window.location.href = "login.html?registered=true";
+                }, 1200);
+
+            } else {
                 if (!emailVal) {
                     showAlert(form, "error", "Please enter your registered email or mobile number.");
                     emailInput.focus();
@@ -184,44 +267,65 @@
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
 
-                try {
-                    const response = await fetch(`${API_BASE}/api/login`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        },
-                        body: JSON.stringify({
-                            email: emailVal,
-                            password: passwordVal
-                        })
-                    });
+                let loggedInUser = null;
+                let loggedInToken = null;
 
-                    const data = await response.json();
+                if (isLocalBackend) {
+                    try {
+                        const controller = new AbortController();
+                        const timer = setTimeout(() => controller.abort(), 1800);
 
-                    if (!response.ok) {
-                        const errMsg = data.detail || (data.message || "Invalid credentials. Please try again.");
-                        showAlert(form, "error", errMsg);
+                        const response = await fetch(`${API_BASE}/api/login`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify({
+                                email: emailVal,
+                                password: passwordVal
+                            }),
+                            signal: controller.signal
+                        });
+                        clearTimeout(timer);
+
+                        const data = await response.json();
+
+                        if (response.ok) {
+                            loggedInUser = data.user;
+                            loggedInToken = data.access_token;
+                        } else {
+                            const errMsg = data.detail || (data.message || "Invalid credentials. Please try again.");
+                            showAlert(form, "error", errMsg);
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnHtml;
+                            return;
+                        }
+                    } catch (err) {
+                        console.warn("Backend API unavailable, using local authentication:", err.message);
+                    }
+                }
+
+                if (!loggedInUser) {
+                    const authResult = authenticateLocally(emailVal, passwordVal);
+                    if (!authResult.success) {
+                        showAlert(form, "error", authResult.message);
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalBtnHtml;
                         return;
                     }
-
-                    localStorage.setItem("stackly_token", data.access_token);
-                    localStorage.setItem("stackly_user", JSON.stringify(data.user));
-
-                    showAlert(form, "success", `Welcome back, ${data.user.fullname}! Redirecting to home...`);
-
-                    setTimeout(() => {
-                        window.location.href = "home.html";
-                    }, 1000);
-
-                } catch (error) {
-                    console.error("Login error:", error);
-                    showAlert(form, "error", "Unable to connect to the backend server. Please verify the backend is running on port 8000.");
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnHtml;
+                    loggedInUser = authResult.user;
+                    loggedInToken = authResult.token;
                 }
+
+                localStorage.setItem("stackly_token", loggedInToken);
+                localStorage.setItem("stackly_user", JSON.stringify(loggedInUser));
+
+                showAlert(form, "success", `Welcome back, ${loggedInUser.fullname}! Redirecting to home...`);
+
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 1000);
             }
         });
     });

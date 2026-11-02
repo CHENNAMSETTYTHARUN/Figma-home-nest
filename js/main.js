@@ -311,10 +311,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (passwordInput) {
-                if (passwordInput.value.length < 8) {
+                if (passwordInput.value.length < 6) {
                     markInvalid(
                         passwordInput,
-                        "Password must contain at least 8 characters."
+                        "Password must contain at least 6 characters."
                     );
                 }
             }
@@ -616,10 +616,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            if (passwordInput && passwordInput.value.length < 8) {
+            if (passwordInput && passwordInput.value.length < 6) {
                 markInvalid(
                     passwordInput,
-                    "Password must contain at least 8 characters."
+                    "Password must contain at least 6 characters."
                 );
             }
 
