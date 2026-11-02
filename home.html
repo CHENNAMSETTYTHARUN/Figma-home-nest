@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Modern Real Estate Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="preloader" class="preloader-overlay">
+    <div class="loader-content">
+
+        <div class="loader-logo-wrap">
+            <svg class="loader-progress-ring" viewBox="0 0 160 160"
+                 aria-hidden="true">
+                <defs>
+                    <linearGradient id="goldGradient"
+                        x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#B98528"/>
+                        <stop offset="50%" stop-color="#F1CF70"/>
+                        <stop offset="100%" stop-color="#B98528"/>
+                    </linearGradient>
+                </defs>
+
+                <circle class="loader-ring-bg"
+                    cx="80" cy="80" r="70"/>
+
+                <circle id="loaderRingProgress"
+                    class="loader-ring-progress"
+                    cx="80" cy="80" r="70"/>
+            </svg>
+
+            <div class="loader-logo-circle">
+                <img src="img/logo (2).webp"
+                     alt="STACKLY Logo"
+                     class="loader-logo-img">
+            </div>
+        </div>
+
+        <h2 class="loader-title">Your Dream Home Awaits...</h2>
+        <p class="loader-subtitle">Loading amazing properties for you</p>
+
+        <div class="loader-progress-bar">
+            <div id="progressFill" class="loader-progress-fill"></div>
+        </div>
+
+        <div id="progressPercent" class="loader-percent">0%</div>
+    </div>
+
+    <div class="loader-scenery"></div>
+</div>
+
+    <header>
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="img/logo (2).webp" alt="Stackly Logo" class="logo-img">
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html" class="active">Home</a></li>
+            <li><a href="property-details.html">Properties</a></li>
+            <li><a href="about.html">About & Booking</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <div class="wishlist-btn-container" id="wishlistBtn" title="Saved Favorites">
+                <i class="fa-solid fa-heart wishlist-icon"></i>
+                <span class="wishlist-count" id="wishlistCount">0</span>
+            </div>
+            <a href="login.html" class="btn-nav-login inactive-login">Login</a>
+            <a href="index.html" class="btn-nav-signup inactive-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span><i class="fa-solid fa-building"></i> Prestige Estates</span>
+            <span><i class="fa-solid fa-city"></i> DLF Homes</span>
+            <span><i class="fa-solid fa-house-chimney-window"></i> Embassy Group</span>
+            <span><i class="fa-solid fa-tower-observation"></i> Sobha Developers</span>
+            <span><i class="fa-solid fa-gem"></i> Godrej Properties</span>
+            <span><i class="fa-solid fa-building-user"></i> Puravankara</span>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-bg-wrapper">
+            <img src="img/clay-banks-364plyVT2eQ-unsplash.webp" alt="Luxury Home" class="hero-img">
+        </div>
+
+        <div class="hero-content">
+            <h1>Find Your Perfect Home Tailored to Your Dreams</h1>
+            <p>Discover handpicked villas, oceanfront penthouses, and prime commercial plots with Stackly.</p>
+
+            <div class="search-widget">
+                <div class="search-col">
+                    <label><i class="fa-solid fa-location-dot"></i> City / Location</label>
+                    <select id="filterLocation">
+                        <option value="">All Locations</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="coimbatore">Coimbatore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="pune">Pune</option>
+                    </select>
+                </div>
+
+                <div class="search-col">
+                    <label><i class="fa-solid fa-building"></i> Type</label>
+                    <select id="filterType">
+                        <option value="">All Types</option>
+                        <option value="villa">Villa</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="house">House</option>
+                        <option value="plot">Plot</option>
+                        <option value="penthouse">Penthouse</option>
+                    </select>
+                </div>
+
+                <div class="search-col">
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i> Price Range</label>
+                    <select id="filterPrice">
+                        <option value="">Any Budget</option>
+                        <option value="under25">Under ₹25 Lakhs</option>
+                        <option value="under50">Under ₹50 Lakhs</option>
+                        <option value="50to1cr">₹50L - ₹1 Cr</option>
+                        <option value="1crto2cr">₹1 Cr - ₹2 Cr</option>
+                        <option value="luxury">₹2 Cr & Above</option>
+                    </select>
+                </div>
+
+                <div class="search-col">
+                    <label><i class="fa-solid fa-bed"></i> BHK</label>
+                    <select id="filterBeds">
+                        <option value="">Any BHK</option>
+                        <option value="1">1 BHK</option>
+                        <option value="2">2 BHK</option>
+                        <option value="3">3 BHK</option>
+                        <option value="4">4 BHK</option>
+                        <option value="5">5+ BHK / Villa</option>
+                    </select>
+                </div>
+
+                <button class="btn-search-trigger" id="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stat-card">
+            <h3>15,800+</h3>
+            <p>Verified Properties</p>
+        </div>
+        <div class="stat-card">
+            <h3>99.4%</h3>
+            <p>Happy Buyers</p>
+        </div>
+        <div class="stat-card">
+            <h3>18.5% YoY</h3>
+            <p>Capital Growth</p>
+        </div>
+        <div class="stat-card">
+            <h3>₹920 Cr+</h3>
+            <p>Deals Executed</p>
+        </div>
+    </section>
+
+    <section class="properties-section" id="properties">
+        <div class="section-title-row">
+            <div>
+                <h2>Featured Residences</h2>
+                <p>Top available residences matching your search criteria</p>
+            </div>
+            <a href="property-details.html" class="link-view-all">View All Properties <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="properties-grid" id="propertyGrid">
+
+            <div class="property-card" data-location="bangalore" data-type="villa" data-price="luxury" data-beds="4">
+                <div class="card-media">
+                    <img src="img/francesca-tosolini-Gu4R-0lwXvk-unsplash.webp" alt="Villa">
+                    <span class="property-tag sale">For Sale</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Indiranagar, Bangalore</p>
+                    <h3>Royal Elite Villa</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 4 Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> 4 Baths</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 3,800 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 2.80 Cr</span>
+                        <a href="property-details.html?title=Royal%20Elite%20Villa&price=2.80%20Cr&type=For%20Sale&location=Indiranagar,%20Bangalore&beds=4&baths=4&sqft=3,800&img=img/francesca-tosolini-Gu4R-0lwXvk-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card" data-location="chennai" data-type="apartment" data-price="50to1cr" data-beds="3">
+                <div class="card-media">
+                    <img src="img/point3d-commercial-imaging-ltd-hfXcKWPGxQs-unsplash.webp" alt="Apartment">
+                    <span class="property-tag rent">For Rent</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> ECR Seaface, Chennai</p>
+                    <h3>Oceanic Horizon Apartment</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> 3 Baths</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 2,100 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 50,000 /mo</span>
+                        <a href="property-details.html?title=Oceanic%20Horizon%20Apartment&price=50,000%20/mo&type=For%20Rent&location=ECR%20Seaface,%20Chennai&beds=3&baths=3&sqft=2,100&img=img/point3d-commercial-imaging-ltd-hfXcKWPGxQs-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card" data-location="coimbatore" data-type="villa" data-price="luxury" data-beds="3">
+                <div class="card-media">
+                    <img src="img/d5-render-O3LR3ZI5Ams-unsplash.webp" alt="Villa">
+                    <span class="property-tag sale">For Sale</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Race Course, Coimbatore</p>
+                    <h3>Whispering Pines Villa</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 3 Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> 3 Baths</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 3,100 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 1.85 Cr</span>
+                        <a href="property-details.html?title=Whispering%20Pines%20Villa&price=1.85%20Cr&type=For%20Sale&location=Race%20Course,%20Coimbatore&beds=3&baths=3&sqft=3,100&img=img/d5-render-O3LR3ZI5Ams-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card" data-location="hyderabad" data-type="apartment" data-price="under50" data-beds="1">
+                <div class="card-media">
+                    <img src="img/point3d-commercial-imaging-ltd-wc4QVZmAF58-unsplash.webp" alt="Apartment">
+                    <span class="property-tag rent">For Rent</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Gachibowli, Hyderabad</p>
+                    <h3>Green Park Studio</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 1 Bed</span>
+                        <span><i class="fa-solid fa-bath"></i> 1 Bath</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 850 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 22,000 /mo</span>
+                        <a href="property-details.html?title=Green%20Park%20Studio&price=22,000%20/mo&type=For%20Rent&location=Gachibowli,%20Hyderabad&beds=1&baths=1&sqft=850&img=img/point3d-commercial-imaging-ltd-wc4QVZmAF58-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card" data-location="chennai" data-type="penthouse" data-price="luxury" data-beds="5">
+                <div class="card-media">
+                    <img src="img/steven-ungermann-g4zOyqK_QsY-unsplash.webp" alt="Penthouse">
+                    <span class="property-tag sale">For Sale</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Nungambakkam, Chennai</p>
+                    <h3>Skyline Luxury Penthouse</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 5 Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> 6 Baths</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 5,200 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 4.50 Cr</span>
+                        <a href="property-details.html?title=Skyline%20Luxury%20Penthouse&price=4.50%20Cr&type=For%20Sale&location=Nungambakkam,%20Chennai&beds=5&baths=6&sqft=5,200&img=img/steven-ungermann-g4zOyqK_QsY-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="property-card" data-location="mumbai" data-type="apartment" data-price="luxury" data-beds="2">
+                <div class="card-media">
+                    <img src="img/steven-ungermann-CVTmLMv5oG4-unsplash.webp" alt="Apartment">
+                    <span class="property-tag sale">For Sale</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Bandra West, Mumbai</p>
+                    <h3>Bandra Sea-View Flat</h3>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 2 Beds</span>
+                        <span><i class="fa-solid fa-bath"></i> 2 Baths</span>
+                        <span><i class="fa-solid fa-vector-square"></i> 1,400 sqft</span>
+                    </div>
+                    <div class="card-foot">
+                        <span class="card-price">₹ 3.10 Cr</span>
+                        <a href="property-details.html?title=Bandra%20Sea-View%20Flat&price=3.10%20Cr&type=For%20Sale&location=Bandra%20West,%20Mumbai&beds=2&baths=2&sqft=1,400&img=img/steven-ungermann-CVTmLMv5oG4-unsplash.webp" class="btn-card-action">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="promo-section">
+        <div class="promo-banner">
+            <div class="promo-text">
+                <span class="promo-label">NEW LAUNCH 2026</span>
+                <h2>Zero Carbon Smart Eco-Villas</h2>
+                <p>Equipped with solar roofing, rainwater systems, and smart home automation.</p>
+                <div class="promo-btn-group">
+                    <a href="property-details.html?title=Zero%20Carbon%20Smart%20Eco-Villa&price=1.95%20Cr&type=For%20Sale&location=ECR,%20Chennai&beds=4&baths=4&sqft=3,400&img=img/stephan-bechert-yFV39g6AZ5o-unsplash.webp" class="btn-promo-explore">
+                        Explore New Launch <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <button class="btn-add-launch" id="openModalBtn"><i class="fa-solid fa-plus"></i> Add New Launch</button>
+                </div>
+            </div>
+            <div class="promo-img-box">
+                <img src="img/stephan-bechert-yFV39g6AZ5o-unsplash.webp" alt="New Launch">
+            </div>
+        </div>
+
+        <div class="help-box-clean" id="contactSection">
+            <div class="help-icon-circle"><i class="fa-solid fa-headset"></i></div>
+            <h3>Contact Support</h3>
+            <p>Connect directly with certified property experts for guidance.</p>
+            <a href="contact.html" class="btn-help-contact"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+        </div>
+    </section>
+
+    <section class="categories-section">
+        <div class="section-title-row">
+            <div>
+                <h2>Explore Categories</h2>
+                <p>Browse listings organized by property categories</p>
+            </div>
+        </div>
+
+        <div class="marquee-categories-wrapper">
+            <div class="marquee-categories-track">
+                <div class="cat-card">
+                    <img src="img/point3d-commercial-imaging-ltd-xON7AIJZemw-unsplash.webp" alt="Penthouses">
+                    <div class="cat-details">
+                        <h4>Luxury Penthouses</h4>
+                        <p>540+ Spaces</p>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="img/steven-ungermann-g4zOyqK_QsY-unsplash.webp" alt="Villas">
+                    <div class="cat-details">
+                        <h4>Gated Villas</h4>
+                        <p>780+ Spaces</p>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="img/point3d-commercial-imaging-ltd-zuJLTgQ53_Q-unsplash.webp" alt="Commercial">
+                    <div class="cat-details">
+                        <h4>Commercial Hubs</h4>
+                        <p>320+ Spaces</p>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="img/steven-ungermann-CVTmLMv5oG4-unsplash.webp" alt="Plots">
+                    <div class="cat-details">
+                        <h4>Residential Plots</h4>
+                        <p>410+ Spaces</p>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="img/point3d-commercial-imaging-ltd-hfXcKWPGxQs-unsplash.webp" alt="Apartments">
+                    <div class="cat-details">
+                        <h4>Modern Apartments</h4>
+                        <p>1,120+ Spaces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="addLaunchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h2>Add New Property Launch</h2>
+            <p class="modal-subtitle">Upload property photo and submit details</p>
+
+            <form id="newLaunchForm">
+                <div class="modal-form-group">
+                    <label>Property Photo</label>
+                    <input type="file" id="newPropImage" accept="image/*" required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label>Property Name</label>
+                    <input type="text" id="newPropTitle" placeholder="e.g. Paramount Haven" required>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="modal-form-group">
+                        <label>Location</label>
+                        <select id="newPropLocation" required>
+                            <option value="chennai">Chennai</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="coimbatore">Coimbatore</option>
+                            <option value="hyderabad">Hyderabad</option>
+                            <option value="mumbai">Mumbai</option>
+                        </select>
+                    </div>
+                    <div class="modal-form-group">
+                        <label>Type</label>
+                        <select id="newPropType" required>
+                            <option value="villa">Villa</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="plot">Plot</option>
+                            <option value="penthouse">Penthouse</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="modal-form-group">
+                        <label>Price</label>
+                        <input type="text" id="newPropPrice" placeholder="e.g. ₹ 1.5 Cr" required>
+                    </div>
+                    <div class="modal-form-group">
+                        <label>Bedrooms (BHK)</label>
+                        <input type="number" id="newPropBeds" placeholder="e.g. 3" min="1" required>
+                    </div>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="modal-form-group">
+                        <label>Bathrooms</label>
+                        <input type="number" id="newPropBaths" placeholder="e.g. 3" min="1" required>
+                    </div>
+                    <div class="modal-form-group">
+                        <label>Area (sqft)</label>
+                        <input type="number" id="newPropSqft" placeholder="e.g. 2400" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit-launch">Submit New Launch</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links-left">
+            <a href="#team" class="footer-link-team">Team</a>
+            <a href="#privacy" class="footer-link-privacy">Privacy</a>
+            <a href="#cookies" class="footer-link-cookies">Cookies</a>
+        </div>
+        <div class="footer-copy-right">
+            &copy; 2026 Stackly Real Estate. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

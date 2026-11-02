@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stackly - Property Details</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="preloader" class="preloader-overlay">
+    <div class="loader-content">
+
+        <div class="loader-logo-wrap">
+
+            <svg class="loader-progress-ring"
+                 viewBox="0 0 160 160"
+                 aria-hidden="true">
+
+                <defs>
+                    <linearGradient id="goldGradient"
+                                    x1="0%" y1="0%"
+                                    x2="100%" y2="100%">
+
+                        <stop offset="0%" stop-color="#B98528"/>
+                        <stop offset="50%" stop-color="#F1CF70"/>
+                        <stop offset="100%" stop-color="#B98528"/>
+
+                    </linearGradient>
+                </defs>
+
+                <circle class="loader-ring-bg"
+                        cx="80" cy="80" r="70"/>
+
+                <circle id="loaderRingProgress"
+                        class="loader-ring-progress"
+                        cx="80" cy="80" r="70"/>
+            </svg>
+
+            <div class="loader-logo-circle">
+                <img src="img/logo (2).webp"
+                     alt="STACKLY Logo"
+                     class="loader-logo-img">
+            </div>
+
+        </div>
+
+        <h2 class="loader-title">Your Dream Home Awaits...</h2>
+
+        <p class="loader-subtitle">
+            Loading amazing properties for you
+        </p>
+
+        <div class="loader-progress-bar">
+            <div id="progressFill" class="loader-progress-fill"></div>
+        </div>
+
+        <div id="progressPercent" class="loader-percent">0%</div>
+
+    </div>
+
+    <div class="loader-scenery"></div>
+</div>
+
+<header>
+
+    <div class="logo-container">
+        <a href="home.html">
+            <img src="img/logo (2).webp"
+                 alt="Stackly Logo"
+                 class="logo-img">
+        </a>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li>
+            <a href="property-details.html" class="active">
+                Properties
+            </a>
+        </li>
+        <li><a href="about.html">About &amp; Booking</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="header-actions">
+
+        <button type="button"
+                class="wishlist-btn-container"
+                id="wishlistBtn"
+                title="Saved Favorites"
+                aria-label="Add property to favorites"
+                aria-pressed="false">
+
+            <i class="fa-solid fa-heart wishlist-icon"></i>
+            <span class="wishlist-count" id="wishlistCount">0</span>
+
+        </button>
+
+        <a href="login.html" class="btn-nav-login inactive-login">
+            Login
+        </a>
+
+        <a href="index.html" class="btn-nav-signup inactive-signup">
+            Sign Up
+        </a>
+
+    </div>
+
+</header>
+
+<main class="details-container">
+
+    <section class="property-top-grid">
+
+        <div class="gallery-section">
+
+            <div class="main-img-box">
+
+                <img id="mainPropertyImg"
+                     src="img/clay-banks-364plyVT2eQ-unsplash.webp"
+                     alt="Property View">
+
+                <span class="property-tag" id="propTagDisplay">
+                    For Rent
+                </span>
+
+            </div>
+
+            <div class="thumbnail-row">
+
+                <img src="img/clay-banks-364plyVT2eQ-unsplash.webp"
+                     alt="Property thumbnail 1"
+                     data-gallery-index="0">
+
+                <img src="img/francesca-tosolini-Gu4R-0lwXvk-unsplash.webp"
+                     alt="Property thumbnail 2"
+                     data-gallery-index="1">
+
+                <img src="img/d5-render-O3LR3ZI5Ams-unsplash.webp"
+                     alt="Property thumbnail 3"
+                     data-gallery-index="2">
+
+                <button type="button"
+                        class="thumb-more"
+                        id="openGalleryModal"
+                        aria-label="Open all property photos">
+
+                    <img src="img/point3d-commercial-imaging-ltd-hfXcKWPGxQs-unsplash.webp"
+                         alt="More property photos">
+
+                    <span>+12</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="property-info-card">
+
+            <div class="title-badge-row">
+
+                <h1 id="propTitleDisplay">
+                    Luxury 3 BHK Villa
+                </h1>
+
+                <span class="badge-rent" id="propBadgeDisplay">
+                    For Rent
+                </span>
+
+            </div>
+
+            <p class="property-loc-text" id="propLocationText">
+                <i class="fa-solid fa-location-dot"></i>
+                Whitefield, Bangalore
+            </p>
+
+            <div class="specs-grid">
+
+                <div class="spec-item">
+                    <i class="fa-solid fa-bed"></i>
+                    <span id="propBedsDisplay">3</span> Beds
+                </div>
+
+                <div class="spec-item">
+                    <i class="fa-solid fa-bath"></i>
+                    <span id="propBathsDisplay">3</span> Baths
+                </div>
+
+                <div class="spec-item">
+                    <i class="fa-solid fa-vector-square"></i>
+                    <span id="propSqftDisplay">2,400</span> sqft
+                </div>
+
+            </div>
+
+            <div class="price-row">
+
+                <span class="currency-symbol">₹</span>
+
+                <span class="price-amount" id="propPriceDisplay">
+                    25,000
+                </span>
+
+                <span class="price-duration" id="propDurationDisplay">
+                    /month
+                </span>
+
+            </div>
+
+            <div class="action-buttons-row">
+
+                <button type="button"
+                        class="btn-book-now"
+                        id="openBookModal">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Book Now
+
+                </button>
+
+                <button type="button"
+                        class="btn-schedule"
+                        id="openScheduleModal">
+
+                    <i class="fa-solid fa-clock"></i>
+                    Schedule &amp; Visit
+
+                </button>
+
+            </div>
+
+            <div class="amenities-selection-title">
+                Select Included Amenities:
+            </div>
+
+            <div class="amenities-icons-grid" id="amenitiesCheckboxGroup">
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="Furnished" checked>
+                    <i class="fa-solid fa-couch"></i>
+                    Furnished
+                </label>
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="Swimming Pool" checked>
+                    <i class="fa-solid fa-person-swimming"></i>
+                    Pool
+                </label>
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="Power Backup" checked>
+                    <i class="fa-solid fa-bolt"></i>
+                    Backup
+                </label>
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="Gated Community" checked>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Gated
+                </label>
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="24/7 Security" checked>
+                    <i class="fa-solid fa-video"></i>
+                    Security
+                </label>
+
+                <label class="amenity-chip">
+                    <input type="checkbox" value="Car Parking" checked>
+                    <i class="fa-solid fa-car"></i>
+                    Parking
+                </label>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="property-bottom-grid">
+
+        <div class="left-content-area" style="flex: 2;">
+
+            <div class="tabs-header">
+
+                <button type="button"
+                        class="tab-btn active"
+                        data-tab="overview">
+                    Overview
+                </button>
+
+                <button type="button"
+                        class="tab-btn"
+                        data-tab="location">
+                    Location Map
+                </button>
+
+                <button type="button"
+                        class="tab-btn"
+                        data-tab="amenities">
+                    Amenities
+                </button>
+
+                <button type="button"
+                        class="tab-btn"
+                        data-tab="reviews">
+                    Reviews
+                </button>
+
+            </div>
+
+            <div id="tab-overview" class="tab-content active">
+
+                <h3>About This Property</h3>
+
+                <p id="propDescDisplay">
+                    Properties built for people to live in, including
+                    single-family homes, apartments, townhouses, and
+                    condominiums with high-end architecture and
+                    premium community access.
+                </p>
+
+            </div>
+
+            <div id="tab-location" class="tab-content">
+
+                <h3>Location &amp; Google Map</h3>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"
+                       style="color:#2563eb;"></i>
+
+                    <strong id="locationAddressDisplay">
+                        Whitefield, Bangalore
+                    </strong>
+                </p>
+
+                <div class="map-container-box" style="margin-top:15px;">
+
+                    <iframe id="propertyMapIframe"
+                            title="Property location map"
+                            width="100%"
+                            height="280"
+                            style="border:0;border-radius:12px;"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://maps.google.com/maps?q=Whitefield%2C%20Bangalore&output=embed">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+            <div id="tab-amenities" class="tab-content">
+
+                <h3>All Included Amenities</h3>
+
+                <div class="full-amenities-list"
+                     id="dynamicAmenitiesList"
+                     style="margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
+
+                    <span>
+                        <i class="fa-solid fa-wifi"></i>
+                        Ultra High-Speed Wi-Fi
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-dumbbell"></i>
+                        Fitness Center &amp; Gym
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-square-parking"></i>
+                        Reserved Covered Parking
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-tree"></i>
+                        Eco Garden Park
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div id="tab-reviews" class="tab-content">
+
+                <h3>Customer Ratings &amp; Reviews</h3>
+
+                <div id="dynamicReviewsList"
+                     style="display:flex;flex-direction:column;gap:12px;margin-top:10px;">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <aside class="right-sidebar-area" style="flex:1;">
+
+            <div class="manager-card"
+                 style="text-align:center;padding:25px;">
+
+                <div style="font-size:32px;color:#2563eb;margin-bottom:10px;">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+
+                <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">
+                    Contact Support
+                </h3>
+
+                <p style="font-size:13px;color:#64748b;margin-bottom:18px;">
+                    Connect directly with certified property experts
+                    for guidance.
+                </p>
+
+                <a href="contact.html"
+                   class="btn-contact-manager"
+                   style="display:inline-block;width:100%;background:#1e3a8a;color:#fff;padding:11px;border-radius:8px;font-weight:700;text-decoration:none;">
+
+                    <i class="fa-solid fa-envelope"></i>
+                    Contact Us
+
+                </a>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<div id="galleryModal"
+     class="modal"
+     aria-hidden="true">
+
+    <div class="modal-content gallery-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="galleryModalTitle">
+
+        <button type="button"
+                class="close-modal"
+                id="closeGalleryModal"
+                aria-label="Close gallery">
+
+            &times;
+
+        </button>
+
+        <h2 id="galleryModalTitle">
+            Select Photo from Gallery (12 Photos)
+        </h2>
+
+        <p class="modal-subtitle">
+            Select a photo, then click Done to apply it.
+        </p>
+
+        <div class="lightbox-grid" id="lightboxGridContainer">
+
+        </div>
+
+        <button type="button"
+                class="btn-submit-modal"
+                id="doneGalleryBtn"
+                style="margin-top:20px;">
+
+            Done &amp; Apply Photo
+
+        </button>
+
+    </div>
+
+</div>
+
+<div id="bookModal" class="modal" aria-hidden="true">
+
+    <div class="modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="bookModalTitle">
+
+        <button type="button"
+                class="close-modal"
+                id="closeBookModal"
+                aria-label="Close booking form">
+            &times;
+        </button>
+
+        <h2 id="bookModalTitle">Book Property Securely</h2>
+
+        <p class="modal-subtitle">
+            Provide your personal &amp; stay requirements
+        </p>
+
+        <form id="bookingForm">
+
+            <div class="modal-form-group">
+                <label for="bookName">Full Name</label>
+                <input type="text"
+                       id="bookName"
+                       placeholder="Enter your full name"
+                       required>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="bookContact">Email ID / Mobile Number</label>
+                <input type="text"
+                       id="bookContact"
+                       placeholder="Enter phone or email"
+                       required>
+            </div>
+
+            <div class="modal-form-row">
+
+                <div class="modal-form-group">
+                    <label for="bookWork">Occupation / Work</label>
+                    <input type="text"
+                           id="bookWork"
+                           placeholder="e.g. IT Developer"
+                           required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="bookSalary">Monthly Salary (₹)</label>
+                    <input type="number"
+                           id="bookSalary"
+                           min="0"
+                           placeholder="e.g. 75000"
+                           required>
+                </div>
+
+            </div>
+
+            <div class="modal-form-group">
+                <label for="bookPropertyTitle">Selected Property Name</label>
+                <input type="text"
+                       id="bookPropertyTitle"
+                       readonly
+                       style="background:#e2e8f0;font-weight:700;">
+            </div>
+
+            <div class="modal-form-row">
+
+                <div class="modal-form-group">
+                    <label for="bookCheckIn">Check-In Date</label>
+                    <input type="date" id="bookCheckIn" required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="bookCheckOut">Check-Out Date</label>
+                    <input type="date" id="bookCheckOut" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit-modal">
+                Confirm Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div id="scheduleModal" class="modal" aria-hidden="true">
+
+    <div class="modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="scheduleModalTitle">
+
+        <button type="button"
+                class="close-modal"
+                id="closeScheduleModal"
+                aria-label="Close schedule form">
+            &times;
+        </button>
+
+        <h2 id="scheduleModalTitle">Schedule a Site Visit</h2>
+
+        <p class="modal-subtitle">
+            Choose your convenient date and time slot
+        </p>
+
+        <form id="scheduleForm">
+
+            <div class="modal-form-group">
+                <label for="schedName">Your Name</label>
+                <input type="text"
+                       id="schedName"
+                       placeholder="Enter your name"
+                       required>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="schedPhone">Phone Number</label>
+                <input type="tel"
+                       id="schedPhone"
+                       placeholder="Enter mobile number"
+                       required>
+            </div>
+
+            <div class="modal-form-row">
+
+                <div class="modal-form-group">
+                    <label for="schedDate">Visit Date</label>
+                    <input type="date" id="schedDate" required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label for="schedSlot">Time Slot</label>
+
+                    <select id="schedSlot" required>
+                        <option value="10:00 AM - 12:00 PM">
+                            10:00 AM - 12:00 PM
+                        </option>
+
+                        <option value="02:00 PM - 04:00 PM">
+                            02:00 PM - 04:00 PM
+                        </option>
+
+                        <option value="04:30 PM - 06:30 PM">
+                            04:30 PM - 06:30 PM
+                        </option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit-modal">
+                Confirm Visit Schedule
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <div class="footer-links-left">
+            <a href="#team" class="footer-link-team">Team</a>
+            <a href="#privacy" class="footer-link-privacy">Privacy</a>
+            <a href="#cookies" class="footer-link-cookies">Cookies</a>
+        </div>
+
+    <div class="footer-copy-right">
+        &copy; 2026 Stackly Real Estate. All rights reserved.
+    </div>
+
+</footer>
+
+<script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+</html>

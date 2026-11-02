@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-body">
+
+<div id="preloader" class="preloader-overlay">
+    <div class="loader-content">
+
+        <div class="loader-logo-wrap">
+            <svg class="loader-progress-ring" viewBox="0 0 160 160"
+                 aria-hidden="true">
+                <defs>
+                    <linearGradient id="goldGradient"
+                        x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#B98528"/>
+                        <stop offset="50%" stop-color="#F1CF70"/>
+                        <stop offset="100%" stop-color="#B98528"/>
+                    </linearGradient>
+                </defs>
+
+                <circle class="loader-ring-bg"
+                    cx="80" cy="80" r="70"/>
+
+                <circle id="loaderRingProgress"
+                    class="loader-ring-progress"
+                    cx="80" cy="80" r="70"/>
+            </svg>
+
+            <div class="loader-logo-circle">
+                <img src="img/logo (2).webp"
+                     alt="STACKLY Logo"
+                     class="loader-logo-img">
+            </div>
+        </div>
+
+        <h2 class="loader-title">Your Dream Home Awaits...</h2>
+        <p class="loader-subtitle">Loading amazing properties for you</p>
+
+        <div class="loader-progress-bar">
+            <div id="progressFill" class="loader-progress-fill"></div>
+        </div>
+
+        <div id="progressPercent" class="loader-percent">0%</div>
+    </div>
+
+    <div class="loader-scenery"></div>
+</div>
+
+    <header>
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="img/logo (2).webp" alt="Stackly Logo" class="logo-img">
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="property-details.html">Properties</a></li>
+            <li><a href="about.html">About & Booking</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <div class="wishlist-btn-container" id="wishlistBtn" title="Saved Favorites">
+                <i class="fa-solid fa-heart wishlist-icon"></i>
+                <span class="wishlist-count" id="wishlistCount">0</span>
+            </div>
+            <a href="login.html" class="btn-nav-login active-login">Login</a>
+            <a href="index.html" class="btn-nav-signup inactive-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="container auth-container">
+
+        <div class="login-section">
+            <h1 class="page-title">Welcome Back !</h1>
+            <p class="subtitle">Sign in to your account to continue exploring amazing properties.</p>
+
+            <div id="authAlert" class="auth-alert" style="display: none;"></div>
+
+            <form id="loginForm" action="home.html" method="POST">
+                <div class="form-group">
+                    <label for="email">Email or Mobile Number</label>
+                    <div class="input-box">
+                        <input type="text" id="email" name="email" placeholder="Enter your email or mobile number" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-box">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                        <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <div class="options-row">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                    <a href="#" class="forgot-pass" id="openForgotModal">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <div class="divider">
+                <span>Or continue with</span>
+            </div>
+
+            <div class="social-login">
+                <a href="https://google.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-google" style="color: #ea4335;"></i> Google
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-instagram" style="color: #e4405f;"></i> Instagram
+                </a>
+            </div>
+
+            <p class="signup-text">
+                Don't have an account? <a href="index.html">Sign Up</a>
+            </p>
+        </div>
+
+        <div class="auth-hero login-bg-banner">
+            <div class="hero-overlay-light"></div>
+            <div class="hero-content">
+                <h2>Your Dream Home Is Just a Login Away</h2>
+                <p>Discover exclusive luxury properties, direct bookings, and verified real estate spaces.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links-left">
+            <a href="#team" class="footer-link-team">Team</a>
+            <a href="#privacy" class="footer-link-privacy">Privacy</a>
+            <a href="#cookies" class="footer-link-cookies">Cookies</a>
+        </div>
+        <div class="footer-copy-right">
+            &copy; 2026 Stackly Real Estate. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

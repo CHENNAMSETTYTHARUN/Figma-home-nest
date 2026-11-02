@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="about-booking-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - About & Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="about-booking-page">
+
+<div id="preloader" class="preloader-overlay">
+    <div class="loader-content">
+
+        <div class="loader-logo-wrap">
+            <svg class="loader-progress-ring" viewBox="0 0 160 160"
+                 aria-hidden="true">
+                <defs>
+                    <linearGradient id="goldGradient"
+                        x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#B98528"/>
+                        <stop offset="50%" stop-color="#F1CF70"/>
+                        <stop offset="100%" stop-color="#B98528"/>
+                    </linearGradient>
+                </defs>
+
+                <circle class="loader-ring-bg"
+                    cx="80" cy="80" r="70"/>
+
+                <circle id="loaderRingProgress"
+                    class="loader-ring-progress"
+                    cx="80" cy="80" r="70"/>
+            </svg>
+
+            <div class="loader-logo-circle">
+                <img src="img/logo (2).webp"
+                     alt="STACKLY Logo"
+                     class="loader-logo-img">
+            </div>
+        </div>
+
+        <h2 class="loader-title">Your Dream Home Awaits...</h2>
+        <p class="loader-subtitle">Loading amazing properties for you</p>
+
+        <div class="loader-progress-bar">
+            <div id="progressFill" class="loader-progress-fill"></div>
+        </div>
+
+        <div id="progressPercent" class="loader-percent">0%</div>
+    </div>
+
+    <div class="loader-scenery"></div>
+</div>
+
+    <header>
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="img/logo (2).webp" alt="Stackly Logo" class="logo-img">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="property-details.html">Properties</a></li>
+            <li><a href="about.html" class="active">About & Booking</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+            <div class="wishlist-btn-container" id="wishlistBtn" title="Saved Favorites">
+                <i class="fa-solid fa-heart wishlist-icon"></i>
+                <span class="wishlist-count" id="wishlistCount">0</span>
+            </div>
+            <a href="login.html" class="btn-nav-login inactive-login">Login</a>
+            <a href="index.html" class="btn-nav-signup inactive-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="booking-flow-container">
+
+        <h1 class="flow-main-title">Booking Screen</h1>
+
+        <div class="step-wizard-bar">
+            <div class="step-item active" id="stepIndicator1" onclick="switchStep(1)">
+                <span class="step-circle">1</span>
+                <span class="step-label">Booking Details</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator2" onclick="switchStep(2)">
+                <span class="step-circle">2</span>
+                <span class="step-label">Payment</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator3" onclick="switchStep(3)">
+                <span class="step-circle">3</span>
+                <span class="step-label">Confirmation</span>
+            </div>
+        </div>
+
+        <div id="bookingSection1" class="workflow-section active">
+            <h2 class="section-title-head">Book Your Property</h2>
+
+            <div class="booking-grid-layout">
+
+                <div class="booking-left-col">
+                    <div class="selected-property-card">
+                        <img src="" alt="Property" id="flowPropImg">
+                        <div class="flow-prop-info">
+                            <h3 id="flowPropTitle">Loading Property...</h3>
+                            <p><i class="fa-solid fa-location-dot"></i> <span id="flowPropLoc">Location</span></p>
+                            <div class="flow-specs">
+                                <span><i class="fa-solid fa-bed"></i> <span id="flowPropBeds">3</span> Beds</span>
+                                <span><i class="fa-solid fa-bath"></i> <span id="flowPropBaths">3</span> Baths</span>
+                                <span><i class="fa-solid fa-vector-square"></i> <span id="flowPropSqft">2,400</span> sqft</span>
+                            </div>
+                            <div class="flow-price" id="flowPropPrice">₹ 25,000 /month</div>
+
+                            <button type="button" class="btn-view-details" id="viewDetailsBtn" onclick="toggleDetailsView()">
+                                <span id="viewDetailsText">View Full Details</span> <i class="fa-solid fa-chevron-down" id="viewIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="expandableDetailsBox" class="collapsed-details-panel" style="display: none;">
+                        <div class="expandable-inner-content">
+                            <p><strong>Property Type:</strong> <span id="detType">Villa</span></p>
+                            <p><strong>Description:</strong> <span id="detDesc">High-end architecture and premium community access.</span></p>
+                            <p><strong>Selected Amenities:</strong> <span id="detAmenities">Furnished, Swimming Pool, Security, Parking</span></p>
+                        </div>
+
+                        <div class="dates-selection-box" style="margin-top: 15px;">
+                            <h3>Select Booking Dates & Guest Info</h3>
+                            <div class="dates-row">
+                                <div class="date-input-group">
+                                    <label>Check In Date</label>
+                                    <input type="date" id="checkInDate" required>
+                                </div>
+                                <div class="date-input-group">
+                                    <label>Checkout Date</label>
+                                    <input type="date" id="checkOutDate" required>
+                                </div>
+                            </div>
+
+                            <div class="dates-row" style="margin-top: 15px;">
+                                <div class="date-input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="guestName" placeholder="Enter Full Name" required>
+                                </div>
+                                <div class="date-input-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="guestPhone" placeholder="Enter Phone Number" required>
+                                </div>
+                            </div>
+
+                            <div class="dates-row" style="margin-top: 15px;">
+                                <div class="date-input-group">
+                                    <label>Occupation / Work</label>
+                                    <input type="text" id="guestWork" placeholder="e.g. IT Developer" required>
+                                </div>
+                                <div class="date-input-group">
+                                    <label>Monthly Salary (₹)</label>
+                                    <input type="number" id="guestSalary" placeholder="e.g. 75000" required>
+                                </div>
+                            </div>
+
+                            <div class="date-input-group" style="margin-top: 15px;">
+                                <label>Special Requests / Queries (Mandatory)</label>
+                                <textarea id="specialReq" rows="3" placeholder="Enter furnishing needs or queries..." required></textarea>
+                                <small id="reqErrorMsg" style="color: #dc2626; display: none; font-weight: 700;">Please fill in special requests to proceed.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-right-col">
+                    <div class="summary-card">
+                        <h3>Property Summary</h3>
+                        <div class="summary-row"><span>Property Type</span> <strong id="sumType">Villa</strong></div>
+                        <div class="summary-row"><span>Location</span> <strong id="sumLoc">Whitefield, Bangalore</strong></div>
+                        <div class="summary-row"><span>Available From</span> <strong>15 Oct 2025</strong></div>
+                        <div class="summary-row"><span>Leave Duration</span> <strong>12 Months</strong></div>
+                        <div class="summary-row"><span>Security Deposit</span> <strong id="sumDeposit">₹ 2,50,000</strong></div>
+                    </div>
+
+                    <div class="total-amount-card">
+                        <h3>Total Amount Breakdown</h3>
+                        <div class="amount-row"><span id="rentLabel">Property Price</span> <strong id="sumRent">₹ 25,000</strong></div>
+                        <div class="amount-row"><span>Security Deposit</span> <strong id="breakdownDeposit">₹ 2,50,000</strong></div>
+                        <div class="amount-row"><span>Service Fee</span> <strong id="breakdownService">₹ 5,000</strong></div>
+                        <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 12px 0;">
+                        <div class="amount-row total-payable"><span>Total Payable</span> <strong id="totalPayableAmt">₹ 2,80,000</strong></div>
+
+                        <button type="button" class="btn-proceed-pay" id="proceedToPayBtn">Proceed to Payment <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bookingSection2" class="workflow-section">
+            <h2 class="section-title-head">Choose Payment Category</h2>
+            <p class="section-subtitle-text">Select your preferred payment structure.</p>
+
+            <div class="payment-options-grid">
+
+                <div class="payment-card-option" id="payCat1" onclick="selectPaymentCategory(1)">
+                    <div class="radio-circle"><i class="fa-solid fa-check"></i></div>
+                    <div class="pay-cat-content">
+                        <h3>Category 1: Half Payment (50% Advance)</h3>
+                        <p>Pay half amount now. Remaining balance has a strict <strong>1 Month Deadline</strong> from today's payment date. 
+                           <br><span style="color: #dc2626; font-weight: 700;">Status Note: Payment is Incomplete (Pending 2nd Half Balance).</span></p>
+                        <div class="pay-breakdown">
+                            <span>Pay Now: <strong id="cat1PayNow">₹ 1,40,000</strong></span>
+                            <span>Due within 30 Days: <strong id="cat1DueLater">₹ 1,40,000</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-card-option selected" id="payCat2" onclick="selectPaymentCategory(2)">
+                    <div class="radio-circle"><i class="fa-solid fa-check"></i></div>
+                    <div class="pay-cat-content">
+                        <h3>Category 2: Full Payment (100% Upfront)</h3>
+                        <p>Pay complete amount now and secure your booking instantly with zero dues remaining.
+                           <br><span style="color: #16a34a; font-weight: 700;">Status Note: Payment is Successful & Confirmed.</span></p>
+                        <div class="pay-breakdown">
+                            <span>Pay Total Now: <strong id="cat2PayNow">₹ 2,80,000</strong></span>
+                            <span style="color: #16a34a; font-weight: 700;">Confirmed Status</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-action-row">
+                <button type="button" class="btn-back-step" onclick="switchStep(1)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button type="button" class="btn-proceed-pay" id="confirmPaymentBtn">Complete Secure Payment <i class="fa-solid fa-shield-check"></i></button>
+            </div>
+        </div>
+
+        <div id="bookingSection3" class="workflow-section">
+            <div class="confirmation-success-box">
+                <div class="success-icon-ring"><i class="fa-solid fa-circle-check"></i></div>
+                <h2>Booking Confirmed Successfully!</h2>
+                <p>Your property reservation and payment transaction have been successfully recorded with complete details.</p>
+
+                <div class="user-booking-receipt-card" id="receiptCardDetails"></div>
+
+                <div class="receipt-buttons-row">
+                    <button type="button" class="btn-proceed-pay" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save Receipt</button>
+                    <a href="home.html" class="btn-back-step" style="text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center;">Back to Home</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="help-box-clean" id="contactSection" style="max-width: 1200px; margin: 40px auto; background: #fff; border-radius: 16px; padding: 30px; text-align: center; border: 1px solid #e2e8f0;">
+        <div class="help-icon-circle" style="width: 50px; height: 50px; background: #eff6ff; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 20px;"><i class="fa-solid fa-headset"></i></div>
+        <h3>Contact Support</h3>
+        <p>Connect directly with certified property experts for guidance.</p>
+        <a href="contact.html" class="btn-help-contact" style="display: inline-block; margin-top: 15px; background: #1e3a8a; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 700;"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+    </div>
+
+    <footer>
+        <div class="footer-links-left">
+            <a href="#team" class="footer-link-team">Team</a>
+            <a href="#privacy" class="footer-link-privacy">Privacy</a>
+            <a href="#cookies" class="footer-link-cookies">Cookies</a>
+        </div>
+        <div class="footer-copy-right">&copy; 2026 Stackly Real Estate. All rights reserved.</div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
